@@ -24,7 +24,7 @@
                     </PinInput>
             </CardContent>
             <CardContent v-else>
-                <div class="flex gap-2 w-full pb-2">
+                <div class="flex w-full max-w-sm items-center space-x-2">
                     <Button variant="secondary">{{ country_code }}</Button>
                     <Input type="phone" placeholder="Phone" v-model="phone"/>
                 </div>
