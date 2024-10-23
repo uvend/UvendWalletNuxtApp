@@ -26,7 +26,7 @@
             <CardContent v-else>
                 <div class="flex w-full max-w-sm items-center space-x-2">
                     <Button variant="secondary">{{ country_code }}</Button>
-                    <Input type="phone" placeholder="Phone" v-model="phone"/>
+                    <Input type="tel" placeholder="Phone" v-model="phone"/>
                 </div>
             </CardContent>
             <CardFooter>

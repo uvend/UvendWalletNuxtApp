@@ -9,19 +9,13 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:latest
+      - docker build -t $REPOSITORY_URI:latest . || { echo 'Docker build failed'; exit 1; }  # Added error handling
+      - docker images  # List all local images to verify the build
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image to ECR...
-      - docker push $REPOSITORY_URI:latest
+      - echo Pushing the Docker image...
+      - docker push $REPOSITORY_URI:latest || { echo 'Docker push failed'; exit 1; }  # Added error handling
       - echo Writing image definitions file...
-      - printf '[{"name":"uvend-wallet-nuxt","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $REPOSITORY_URI:latest > imagedefinitions.json
 artifacts:
-  files:
-    - imagedefinitions.json
-
-cache:
-  paths:
-    - '/root/.cache'
+  files: imagedefinitions.json
