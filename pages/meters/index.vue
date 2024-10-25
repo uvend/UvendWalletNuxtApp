@@ -3,7 +3,7 @@
         <div class="flex flex-col items-center gap-1 w-full">
             <div class="search-container flex w-full justify-between">
                 <Button  variant="outline"><Icon name="lucide:search" class="w-4 h-4"/></Button>
-                <Input id="email" type="email" placeholder="Search" class="flex-grow"/>
+                <Input id="email" type="email" placeholder="Search" class="flex-grow ml-1"/>
             </div>
             <UvendDialogMeter v-model:open="isDialogOpen" @addSuccess="closeDialog"/>
             <Button @click="openDialog" type="submit" class="w-full">

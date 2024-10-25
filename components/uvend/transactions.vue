@@ -1,10 +1,23 @@
 <template>
     <div id="uvend-transactions">
-        <ul>
+        <ul class="p-2">
       <li v-for="transaction in transactions" :key="transaction.uuid">
-        
         <Drawer>
-            <DrawerTrigger>{{ transaction.uuid }}</DrawerTrigger>
+            <DrawerTrigger class="w-full">
+                <Card class="flex w-full p-2 my-1 items-center shadow-md">
+                    <div>
+                        <!-- icon type-->
+                         <Icon name="mage:electricity" size="1.5em" v-if="transaction.meter_type == 'elect'"/>
+                         <Icon name="mage:water-drop" size="1.5em" v-else-if="transaction.meter_type == 'water'"/>
+                         <Icon name="mage:credit-card" size="1.5em" v-else="transaction.meter_type == 'water'"/>
+                    </div>
+                    <div class="flex-grow text-left mx-1">
+                        <p>{{ getTransactionTitle(transaction) }}</p>
+                        <p>{{ transaction.created_at }}</p>
+                    </div>
+                    <div  :class="transaction.transaction_type" class="font-bold">{{ transaction.amount }}</div>
+                </Card>
+            </DrawerTrigger>
             <DrawerContent>
             <DrawerHeader>
 
@@ -43,7 +56,8 @@ export default{
         }
     },
     methods:{
-        getTransactions
+        getTransactions,
+        getTransactionTitle
     },
     mounted(){
         const token = localStorage.getItem("auth");
@@ -69,10 +83,22 @@ async function getTransactions(token){
         console.log(e)
     }
 }
+
+async function getTransactionTitle(transaction){
+    if(transaction.nickname != null){
+        return transaction.nicknao
+    }
+}
 </script>
 <style>
 .draw-content{
     max-height: 50vh;
     overflow-y: scroll;
+}
+.debit{
+    color: #dc2626;
+}
+.credit{
+    color: #16a34a;
 }
 </style>
