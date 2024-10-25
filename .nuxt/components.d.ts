@@ -4,6 +4,8 @@ type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refre
 interface _GlobalComponents {
       'UvendBalanceCard': typeof import("../components/uvend/balanceCard.vue")['default']
     'UvendDialogMeter': typeof import("../components/uvend/dialog/meter.vue")['default']
+    'UvendDialogPurcahse': typeof import("../components/uvend/dialog/purcahse.vue")['default']
+    'UvendMeters': typeof import("../components/uvend/meters.vue")['default']
     'UvendTransactions': typeof import("../components/uvend/transactions.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -85,6 +87,8 @@ interface _GlobalComponents {
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyUvendBalanceCard': typeof import("../components/uvend/balanceCard.vue")['default']
     'LazyUvendDialogMeter': typeof import("../components/uvend/dialog/meter.vue")['default']
+    'LazyUvendDialogPurcahse': typeof import("../components/uvend/dialog/purcahse.vue")['default']
+    'LazyUvendMeters': typeof import("../components/uvend/meters.vue")['default']
     'LazyUvendTransactions': typeof import("../components/uvend/transactions.vue")['default']
     'LazyNuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -172,6 +176,8 @@ declare module 'vue' {
 
 export const UvendBalanceCard: typeof import("../components/uvend/balanceCard.vue")['default']
 export const UvendDialogMeter: typeof import("../components/uvend/dialog/meter.vue")['default']
+export const UvendDialogPurcahse: typeof import("../components/uvend/dialog/purcahse.vue")['default']
+export const UvendMeters: typeof import("../components/uvend/meters.vue")['default']
 export const UvendTransactions: typeof import("../components/uvend/transactions.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -253,6 +259,8 @@ export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyUvendBalanceCard: typeof import("../components/uvend/balanceCard.vue")['default']
 export const LazyUvendDialogMeter: typeof import("../components/uvend/dialog/meter.vue")['default']
+export const LazyUvendDialogPurcahse: typeof import("../components/uvend/dialog/purcahse.vue")['default']
+export const LazyUvendMeters: typeof import("../components/uvend/meters.vue")['default']
 export const LazyUvendTransactions: typeof import("../components/uvend/transactions.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']

@@ -67,7 +67,7 @@ async function handleLogin(){
     const { status, response} = await $fetch(`${this.apiUrl}/user/otp/initiate`,{
         method: "POST",
         body: {
-            phone: "+27"+this.phone
+            phone: "27"+this.phone
         }
     })
     this.otp = status;
@@ -85,7 +85,7 @@ async function handleComplete() {
         const {status, response} = await $fetch(`${this.apiUrl}/user/otp/validate`,{
             method: "POST",
             body:{
-                phone: "+27"+this.phone,
+                phone: "27"+this.phone,
                 otp: otp
             }
         })
