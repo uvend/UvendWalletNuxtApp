@@ -6,12 +6,10 @@
             </CardHeader>
             <CardContent v-if="otp">
                 <PinInput
-                    otp
-                    class="py-4 flex justify-center"
-                    id="pin-input"
-                    v-model="otp_value"
+                    class="py-4 flex justify-center"    
                     placeholder="○"
                     @complete="handleComplete"
+                    v-model="otp_value"
                     >
                     <PinInputGroup>
                         <PinInputInput
@@ -19,6 +17,7 @@
                             v-for="(id, index) in 4"
                             :key="id"
                             :index="index"
+                            type="tel"
                             />
                     </PinInputGroup>
                     </PinInput>
@@ -38,16 +37,23 @@
 
 </template>
 <script>
+definePageMeta({
+  middleware: [
+    'noauth',
+  ]
+});
 import { useToast } from '@/components/ui/toast/use-toast'
 const { toast } = useToast();
 
 export default{
     data(){
+        const apiUrl = useRuntimeConfig().public.apiUrl
         return {
             country_code: "+27",
             phone: null,
             otp: false,
-            otp_value: []
+            otp_value: [],
+            apiUrl: apiUrl
         }
     },
     methods:{
@@ -58,20 +64,14 @@ export default{
 }
 
 async function handleLogin(){
-    const apiUrl = useRuntimeConfig().public.apiUrl
-    const phone = this.phone;
-    console.log(phone)
-    const { data, status, error, refresh, clear } = await $fetch(`${apiUrl}/user/otp/initiate`,{
+    const { status, response} = await $fetch(`${this.apiUrl}/user/otp/initiate`,{
         method: "POST",
         body: {
             phone: "+27"+this.phone
         }
     })
     this.otp = status;
-    toast({
-        title: 'Scheduled: Catch up',
-        description: 'Friday, February 10, 2023 at 5:57 PM',
-      });
+    
 }
 
 async function backToLogin(){
@@ -79,7 +79,24 @@ async function backToLogin(){
 }
 
 async function handleComplete() {
-    console.log(otp_value)
+    try{
+        let otp = this.otp_value.join('')
+        console.log(otp)
+        const {status, response} = await $fetch(`${this.apiUrl}/user/otp/validate`,{
+            method: "POST",
+            body:{
+                phone: "+27"+this.phone,
+                otp: otp
+            }
+        })
+        if(status){
+            const token = response.token;
+            localStorage.setItem('auth',token)
+            navigateTo('/dashboard')
+        }
+    }catch(e){
+        console.log(e)
+    }
     
 }
 </script>

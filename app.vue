@@ -3,8 +3,10 @@
     <!--<NuxtRouteAnnouncer />
     <NuxtWelcome />
     -->
-    <NuxtPage />
-    <Toaster />
+    <NuxtLayout>
+      <NuxtPage />
+      <Toaster />
+    </NuxtLayout>
   </div>
 </template>
 <script>
