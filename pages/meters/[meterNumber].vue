@@ -3,6 +3,7 @@
     {{ meterNumber }}
     <UvendDialogPurcahse :meterNumber="meterNumber" @reload="reloadMeterComponent"/>
     <!-- trandsaction component with key -->
+    <UvendTransactions :meterNumber="meterNumber" :key="transactionComponentKey"/>
 </template>
 <script>
 export default{

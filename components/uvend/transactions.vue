@@ -52,7 +52,12 @@ export default{
 }
 async function getTransactions(token){
     try{
-        const response = await $fetch(`${this.apiUrl}/wallet/transactions`,{
+        let apiEndpoint = `${this.apiUrl}/wallet/transactions`;
+        if(this.meterNumber){
+            console.log(this.meterNumber)
+            apiEndpoint = `${this.apiUrl}/wallet/transactions/meter/${this.meterNumber}`;
+        }
+        const response = await $fetch(apiEndpoint,{
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
