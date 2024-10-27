@@ -1,9 +1,11 @@
 <template>
-    <Button @click="navigateTo('/meters')">Back</Button>
-    {{ meterNumber }}
-    <UvendDialogPurcahse :meterNumber="meterNumber" @reload="reloadMeterComponent"/>
-    <!-- trandsaction component with key -->
-    <UvendTransactions :meterNumber="meterNumber" :key="transactionComponentKey"/>
+    <header>
+        <Button @click="navigateTo('/meters')" variant="secondary"><Icon name="lucide:arrow-left" /></Button>
+        <UvendDialogPurcahse :meterNumber="meterNumber" @reload="reloadMeterComponent"/>
+    </header>
+    <div class="transaction-container">
+        <UvendTransactions :meterNumber="meterNumber" :key="transactionComponentKey"/>
+    </div>
 </template>
 <script>
 export default{
@@ -28,3 +30,9 @@ function reloadMeterComponent(){
     this.transactionComponentKey += 1;
 }
 </script>
+<style>
+.transaction-container{
+    height: 90vh;
+    overflow-y: auto;
+}
+</style>

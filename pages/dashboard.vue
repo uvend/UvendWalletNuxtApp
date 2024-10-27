@@ -1,6 +1,11 @@
 <template>
     <UvendBalanceCard />
-    <UvendTransactions />
+    <div class="p-2">
+      <p>Transactions</p>
+      <div class="transactions-container">
+        <UvendTransactions />
+      </div>
+    </div>
 </template>
 <script>
 definePageMeta({
@@ -9,4 +14,8 @@ definePageMeta({
 });
 </script>
 <style>
+.transactions-container{
+  max-height: 58vh;
+  overflow-y: auto;
+}
 </style>

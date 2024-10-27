@@ -50,6 +50,7 @@ async function signOut(){
 .auth-layout {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -74,7 +75,7 @@ main{
 }
 
 footer {
-    margin-top: auto;
+    margin-top: 0;
     padding: 10px;
     text-align: center;
     background-color: #f5f5f5;
